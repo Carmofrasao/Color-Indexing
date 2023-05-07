@@ -16,13 +16,15 @@ def color_indexing(database, query, bin_size):
     - ordered_images (list): lista ordenada de imagens mais similares à consulta.
     """
     # Quantização da imagem de consulta
-    query_bins = quantize_image(query, bin_size)
+    # query_bins = quantize_image(query, bin_size)
 
     # Cálculo dos histogramas das imagens do banco de dados
     hist_list = []
     for image in database:
         hist = calculate_histogram(image, bin_size)
         hist_list.append(hist)
+
+    query_bins = calculate_histogram(query, bin_size)
 
     # Cálculo das similaridades entre a imagem de consulta e as imagens do banco de dados
     sim_list = []
@@ -64,8 +66,7 @@ def calculate_histogram(image, bin_size):
     """
     bins = quantize_image(image, bin_size)
     hist, _ = np.histogramdd(bins, bins=[bin_size, bin_size, bin_size])
-    hist = hist.flatten()
-    return hist
+    return hist.flatten()
 
 def calculate_similarity(hist1, hist2):
     """
