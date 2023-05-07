@@ -35,7 +35,7 @@ def color_indexing(database, query, bin_size):
     # Ordenação das imagens do banco de dados de acordo com a similaridade
     ordered_images = [database[i] for i in np.argsort(sim_list)[::-1]]
 
-    return ordered_images
+    return ordered_images, sim_list
 
 def quantize_image(image, bin_size):
     """
@@ -100,14 +100,16 @@ query_image = Image.open('query.jpg')
 # converte a imagem para uma matriz numpy
 query_image = np.asarray(query_image)
 
-ordered_images = color_indexing(database=images, query=query_image, bin_size=16)
+ordered_images, sim_list = color_indexing(database=images, query=query_image, bin_size=16)
 
-# exibindo as 5 imagens mais similares à consulta
-num_similar_images = 5
+num_images = 5
 
-for i in range(num_similar_images):
-    image = ordered_images[i][0]
-    score = ordered_images[i][1]
-    plt.imshow(image)
-    plt.title(f'Similaridade: {score}')
-    plt.show()
+fig, axs = plt.subplots(2, 3, figsize=(12, 8))
+for i in range(num_images):
+    row = i // 3
+    col = i % 3
+    axs[row, col].imshow(ordered_images[i])
+    axs[row, col].set_title(f"Similarity: {sim_list[i]:.2f}")
+    axs[row, col].axis('off')
+
+plt.show()
