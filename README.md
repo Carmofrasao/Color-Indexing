@@ -1,1 +1,1 @@
-# trab-3-visao
+# Reconhecimento de imagens
