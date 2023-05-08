@@ -33,7 +33,7 @@ def color_indexing(database, query, bin_size):
         sim_list.append(sim)
 
     # Ordenação das imagens do banco de dados de acordo com a similaridade
-    ordered_images = [database[i] for i in np.argsort(sim_list)]
+    ordered_images = [database[i] for i in np.argsort(sim_list)[::-1]]
 
     return ordered_images, sim_list
 
