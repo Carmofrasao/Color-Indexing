@@ -95,14 +95,30 @@ for filename in os.listdir(img_dir):
     images.append(np.array(img))
 
 # abre a imagem de consulta em formato JPEG
-query_image = Image.open('query.jpg')
+# query_image = Image.open('carte.jpg')
+query_image = Image.open('chave.jpg')
+# query_image = Image.open('penal.jpg')
+# query_image = Image.open('proc.jpg')
+# query_image = Image.open('livro.jpg')
+# query_image = Image.open('caneca.jpg')
 
 # converte a imagem para uma matriz numpy
 query_image = np.asarray(query_image)
 
 ordered_images, sim_list = color_indexing(database=images, query=query_image, bin_size=16)
 
-num_images = 5
+# carteira
+# num_images = 4
+# chave
+num_images = 6
+# penal
+# num_images = 5
+# processador
+# num_images = 5
+# livro
+# num_images = 4
+# caneca
+# num_images = 5
 
 fig, axs = plt.subplots(2, 3, figsize=(12, 8))
 for i in range(num_images):
