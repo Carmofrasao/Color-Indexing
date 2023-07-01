@@ -65,7 +65,7 @@ for filename in os.listdir(img_dir):
     database_images_paths.append(os.path.join(img_dir, filename))
 
 # Example usage
-query_image_path = 'proc.jpg'
+query_image_path = './testes/proc.jpg'
 
 query_image = cv2.imread(query_image_path)
 
